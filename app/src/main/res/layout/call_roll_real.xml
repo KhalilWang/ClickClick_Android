@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@color/bgcolor">
+
+
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        >
+        <com.beardedhen.androidbootstrap.AwesomeTextView
+            style="@style/wrapping_fa_text"
+            app:bootstrapBrand="info"
+            app:bootstrapText="开始点名"
+            android:textSize="40sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/real_callroll_title"
+            />
+
+        <com.beardedhen.androidbootstrap.BootstrapDropDown
+            android:id="@+id/option_dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:bootstrapText="操作{fa_wrench}"
+            app:bootstrapBrand="regular"
+            app:roundedCorners="true"
+            app:showOutline="true"
+            app:bootstrapSize="lg"
+            app:dropdownResource="@array/options"
+            app:bootstrapExpandDirection="down"/>
+
+    </LinearLayout>
+
+
+    <ImageView
+        android:layout_margin="5sp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/head"/>
+
+    <!--TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:text="张三"/-->
+
+
+    <com.beardedhen.androidbootstrap.AwesomeTextView
+        style="@style/wrapping_fa_text"
+        app:bootstrapBrand="warning"
+        android:id="@+id/coll_roll_real_flashtv"
+        app:bootstrapText="{fa_user}张三"
+        />
+
+
+
+    <TextView
+        android:layout_margin="10sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:text="下一个点名的是: 李四"/>
+
+    <LinearLayout
+        android:layout_margin="15dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="OK"
+            android:textSize="26sp"
+            android:textColor="@color/btn_color"
+            android:layout_margin="20sp"
+            android:background="@color/green"
+            android:id="@+id/OK" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20sp"
+            android:textSize="26sp"
+            android:textColor="@color/btn_color"
+            android:text="NO"
+            android:background="@color/red"
+            android:id="@+id/NG" />
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

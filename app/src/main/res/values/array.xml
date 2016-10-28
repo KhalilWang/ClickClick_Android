@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <array name="options">
+        <item>历史记录</item>
+        <item>刷新记录</item>
+        <item>查看点名</item>
+    </array>
+
+</resources>

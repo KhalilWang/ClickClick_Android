@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/bgcolor"
+    android:gravity="center">
+
+    <!--TextView
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/callroll_tv_head"
+        android:text="@string/call_roll_tv1"/-->
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textSize="32dp"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:text="你正在点的是:"/>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textSize="24dp"
+        android:layout_margin="20dp"
+        android:text="示例班级"
+        android:gravity="center"
+        android:id="@+id/call_roll_classname_tv"/>
+
+    <com.beardedhen.androidbootstrap.BootstrapLabel
+        style="@style/wrapping_button"
+        app:bootstrapText="@string/call_roll_tv1"
+        app:bootstrapBrand="warning"
+        app:bootstrapHeading="h2"
+        app:roundedCorners="true"
+        android:layout_margin="10dp"
+        />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="50sp"
+        >
+
+        <Button
+            android:id="@+id/callroll_all_btn"
+            android:layout_width="100sp"
+            android:layout_height="40sp"
+            android:layout_margin="20sp"
+            android:text="全点"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            >
+
+            <Button
+                android:layout_margin="20sp"
+                android:id="@+id/callroll_random_btn"
+                android:layout_width="100sp"
+                android:layout_height="40sp"
+                android:text="随机"/>
+
+            <RadioGroup
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/random_select">
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="点50%"
+                    android:id="@+id/half_random"/>
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="点30%"
+                    android:id="@+id/one_third_random"/>
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="点20%"
+                    android:id="@+id/one_fifth_random" />
+
+            </RadioGroup>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+
+</LinearLayout>
