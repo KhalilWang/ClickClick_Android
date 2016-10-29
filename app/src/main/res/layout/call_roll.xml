@@ -27,10 +27,10 @@
         android:layout_height="wrap_content"
         android:textSize="24dp"
         android:layout_margin="20dp"
-        android:text="示例班级"
         android:gravity="center"
         android:id="@+id/call_roll_classname_tv"/>
 
+    <!--
     <com.beardedhen.androidbootstrap.BootstrapLabel
         style="@style/wrapping_button"
         app:bootstrapText="@string/call_roll_tv1"
@@ -39,6 +39,14 @@
         app:roundedCorners="true"
         android:layout_margin="10dp"
         />
+        -->
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="选择你的点名方式"
+        android:textColor="#FFFFFF"
+        android:textSize="40dp"/>
 
     <LinearLayout
         android:layout_width="wrap_content"

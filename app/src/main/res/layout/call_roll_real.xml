@@ -24,17 +24,6 @@
             android:id="@+id/real_callroll_title"
             />
 
-        <com.beardedhen.androidbootstrap.BootstrapDropDown
-            android:id="@+id/option_dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:bootstrapText="操作{fa_wrench}"
-            app:bootstrapBrand="regular"
-            app:roundedCorners="true"
-            app:showOutline="true"
-            app:bootstrapSize="lg"
-            app:dropdownResource="@array/options"
-            app:bootstrapExpandDirection="down"/>
 
     </LinearLayout>
 
@@ -66,7 +55,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="12sp"
-        android:text="下一个点名的是: 李四"/>
+        android:id="@+id/callrollreal_secondtv"/>
 
     <LinearLayout
         android:layout_margin="15dp"

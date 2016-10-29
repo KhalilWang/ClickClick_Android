@@ -60,11 +60,11 @@ public class Login extends Activity{
                         //Get Post Data
 
                         Log.d("233", "Ready to submit to" + data.loginUrl);
-                        final String loginRst = request.submitPostData(data.loginUrl, params, "utf-8");
+                        data.loginRst = request.submitPostData(data.loginUrl, params, "utf-8");
 
-                    Log.d("233", "loginRst:" + loginRst);
-                    Toast.makeText(Login.this, loginRst, Toast.LENGTH_SHORT).show();
-                    AppData.handler = new JsonHandler(loginRst);
+                    Log.d("233", "loginRst:" + data.loginRst);
+                    //Toast.makeText(Login.this, data.loginRst, Toast.LENGTH_SHORT).show();
+                    AppData.handler = new JsonHandler(data.loginRst);
 
                     
                     //Check Login Message

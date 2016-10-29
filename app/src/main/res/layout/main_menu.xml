@@ -58,12 +58,12 @@
             </ListView>
 
 
-            <Button
+            <!--<Button
                 android:id="@+id/mainmeun_start_callroll_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="开始点名" />
-
+            -->
 
         </LinearLayout>
     </RelativeLayout>

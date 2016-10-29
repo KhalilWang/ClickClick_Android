@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -15,6 +16,7 @@ import android.widget.Toast;
 public class CallRoll extends Activity{
 
 
+    AppData data;
     static String rst = "50%";
 
 
@@ -23,6 +25,9 @@ public class CallRoll extends Activity{
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.call_roll);
+
+
+        data = Login.data;
 
         Button all_btn = (Button) findViewById(R.id.callroll_all_btn);
         Button ran_btn = (Button) findViewById(R.id.callroll_random_btn);
@@ -33,12 +38,15 @@ public class CallRoll extends Activity{
         RadioGroup random_select = (RadioGroup) findViewById(R.id.random_select);
 
 
+        TextView class_tv = (TextView) findViewById(R.id.call_roll_classname_tv);
+        class_tv.setText(data.presentCourseName);
+
 
         random_select.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
 
-                switch (checkedId){
+                switch (checkedId) {
                     case R.id.half_random:
                         rst = "50%";
                         Login.data.set_call_roll(AppData.call_roll_opts.HALF);
@@ -68,6 +76,7 @@ public class CallRoll extends Activity{
                 Login.data.set_call_roll(AppData.call_roll_opts.ALL);
 
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -82,6 +91,7 @@ public class CallRoll extends Activity{
                 intent.putExtras(mBundle);
 
                 startActivity(intent);
+                finish();
             }
         });
 

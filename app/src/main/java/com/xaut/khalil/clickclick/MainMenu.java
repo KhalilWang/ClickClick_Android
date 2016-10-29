@@ -46,13 +46,21 @@ public class MainMenu extends ListActivity {
 
         data = Login.data;
 
-        Toast.makeText(MainMenu.this, "欢迎回来," + Login.data.get_username(), Toast.LENGTH_SHORT).show();
 
         // Init title bar tv
         TextView titlebar_tv = (TextView) findViewById(R.id.mainmeun_title_bar_tv);
         titlebar_tv.setText("您好," + Login.data.get_username());
 
+
+        /**
+            取消了直接开始点名的按钮 替代为listviewBtn
+         *
+         */
+
         // Init start call roll btn
+
+        /**
+         *
         Button start_call_roll_btn = (Button) findViewById(R.id.mainmeun_start_callroll_btn);
         start_call_roll_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,6 +91,7 @@ public class MainMenu extends ListActivity {
 
             }
         });
+         */
 
         // Init click img
         final DrawerLayout drawerlayout = (DrawerLayout) findViewById(R.id.drawerlayout);
@@ -143,16 +152,16 @@ public class MainMenu extends ListActivity {
 
     private List<Map<String, Object>> getData() {
         List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
-        List<CourseData> datas = data.handler.generateCourseData();
-
+        //List<CourseData> datas = data.handler.generateCourseData();
+        List<CourseData> datas = new JsonHandler(data.loginRst).generateCourseData();
 
         Map<String, Object> map;
 
         for(int i = 0; i < datas.size(); i++){
             map= new HashMap<String, Object>();
 
-            map.put("title", "#" + datas.get(i).getCnum() + "  " + datas.get(i).getCname());
-
+            map.put("title", datas.get(i).getCname());
+            map.put("listview_cid_tv", datas.get(i).getCnum());
             map.put("info", "时间:周" +
                     datas.get(i).getCtime().toCharArray()[0] +
                     "\t第" + datas.get(i).getCtime().toCharArray()[1] + "节课" +
@@ -174,13 +183,6 @@ public class MainMenu extends ListActivity {
         return list;
     }
 
-    // ListView 中某项被选中后的逻辑
-    @Override
-    protected void onListItemClick(ListView l, View v, int position, long id) {
-
-        Log.d("233", "Click:" + (String)mData.get(position).get("title"));
-    }
-
 
     /**
      * listview中点击按键弹出对话框
@@ -195,6 +197,7 @@ public class MainMenu extends ListActivity {
     public final class ViewHolder{
         public ImageView img;
         public TextView title;
+        public TextView listview_cid_tv;
         public TextView info;
         public Button viewBtn;
     }
@@ -227,7 +230,7 @@ public class MainMenu extends ListActivity {
         }
 
         @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
+        public View getView(final int position, View convertView, ViewGroup parent) {
 
             ViewHolder holder = null;
             if (convertView == null) {
@@ -238,6 +241,7 @@ public class MainMenu extends ListActivity {
                 holder.img = (ImageView)convertView.findViewById(R.id.img);
                 holder.title = (TextView)convertView.findViewById(R.id.title);
                 holder.info = (TextView)convertView.findViewById(R.id.info);
+                holder.listview_cid_tv = (TextView)convertView.findViewById(R.id.listview_cid_tv);
                 holder.viewBtn = (Button)convertView.findViewById(R.id.view_btn);
                 convertView.setTag(holder);
 
@@ -248,15 +252,58 @@ public class MainMenu extends ListActivity {
 
 
             holder.img.setBackgroundResource((Integer)mData.get(position).get("img"));
-            holder.title.setText((String)mData.get(position).get("title"));
+            holder.title.setText((String) mData.get(position).get("title"));
             holder.info.setText((String)mData.get(position).get("info"));
+            holder.listview_cid_tv.setText((String)mData.get(position).get("listview_cid_tv"));
 
             holder.viewBtn.setOnClickListener(new View.OnClickListener() {
 
                 @Override
                 public void onClick(View v) {
-                    ListViewBtnClicked();
+
+                    /*
+                    new AlertDialog.Builder(MainMenu.this)
+                            .setTitle("More")
+                            .setMessage("你选中了" + String.valueOf(position))
+                            .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    setTitle("点击了对话框上的确定按钮");
+                                }
+                            })
+                            .setNeutralButton("中立", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int whichButton) {
+                                    setTitle("点击了对话框上的中立按钮");
+                                }
+                            })
+                            .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int whichButton) {
+                                    setTitle("点击了对话框上的取消按钮");
+                                }
+                            })
+                            .create()
+                            .show();*/
+                    Map<String, String> params = new HashMap<String, String>();
+                    data.presentCourseId = (String) mData.get(position).get("listview_cid_tv");
+                    data.presentCourseName = (String) mData.get(position).get("title");
+                    params.put("cid", data.presentCourseId);
+                    webRequest rq = new webRequest();
+
+                    try {
+                        Log.d("233", "Ready to post cid :" + data.getStuUrl);
+                        String rst = rq.submitPostData(data.getStuUrl, params, "utf-8");
+                        Log.d("233", "cstudentRst:" + rst);
+                        data.handler = new JsonHandler(rst);
+                        if(data.handler.isStudentCorrect()){
+                            Intent call_roll = new Intent(MainMenu.this, CallRoll.class);
+                            startActivity(call_roll);
+                        }else{
+                            Toast.makeText(MainMenu.this, data.handler.loginFailedMsg, Toast.LENGTH_SHORT).show();
+                        }
+                    } catch (MalformedURLException e) {
+                        Log.d("233", "Cid:" + e.getMessage());
+                    }
                 }
+
             });
 
 

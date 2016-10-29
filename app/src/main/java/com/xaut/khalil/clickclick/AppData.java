@@ -13,28 +13,37 @@ public class AppData {
         ONE_FIFTH
     }
 
+    final String url = "http://192.168.3.138:5000/";
+
     static String tgtUrl;
     static String loginUrl;
     static String getStuUrl;
+    static String postAttendanceUrl;
 
     static JsonHandler handler;
+    static String presentCourseId;
+    static String presentCourseName;
+
+    static String loginRst;
 
     static String username;
     static call_roll_opts call_roll_option;
 
     AppData(String user)
     {
-        tgtUrl = "http://192.168.3.138:5000/";
+        tgtUrl = url;
         loginUrl = tgtUrl + "login";
         getStuUrl = tgtUrl + "get_cstudents";
+        postAttendanceUrl = tgtUrl + "post_attendances";
         username = user;
         call_roll_option = call_roll_opts.ALL;
     }
 
     AppData()
-    {   tgtUrl = "http://192.168.3.138:5000/";
+    {   tgtUrl = url;
         loginUrl = tgtUrl + "login";
         getStuUrl = tgtUrl + "get_cstudents";
+        postAttendanceUrl = tgtUrl + "post_attendances";
         username = "";
         call_roll_option = call_roll_opts.ALL;
     }

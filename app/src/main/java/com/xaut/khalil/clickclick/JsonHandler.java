@@ -114,6 +114,31 @@ public class JsonHandler {
         return null;
     }
 
+    public String generateAttendance(List<AttendanceData> src){
+
+        JSONArray jsonArray = new JSONArray();
+
+        JSONObject rst = new JSONObject();
+
+        try {
+            for (int i = 0; i < src.size(); i++) {
+                JSONObject tmp = new JSONObject();
+                tmp.put("sid", src.get(i).getSid());
+                tmp.put("cid", src.get(i).getCid());
+                tmp.put("atime", src.get(i).getAtime());
+                tmp.put("aresult", src.get(i).getAresult());
+                jsonArray.put(i, tmp);
+            }
+
+            rst.put("attendances", jsonArray);
+
+        }catch (JSONException e){
+            Log.d("233", "GenAttendance:" + e.getMessage());
+        }
+
+        return rst.toString();
+    }
+
 
 }
 
