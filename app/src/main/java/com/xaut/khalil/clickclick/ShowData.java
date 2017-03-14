@@ -3,9 +3,15 @@ package com.xaut.khalil.clickclick;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,13 +36,13 @@ public class ShowData extends Activity{
 
         Intent intent = getIntent();
 
-        //Bundle rst = intent.getExtras();
-        //tv.setText(rst.getString("data"));
-
+        Bundle bundle = intent.getExtras();
         tv.setText("点名结果");
 
+        AppData.show_data_opts type = (AppData.show_data_opts)bundle.get("type");
+        String data = bundle.getString("data");
 
-        initList();
+        initList(type, data);
 
         RecyclerView rv = (RecyclerView)findViewById(R.id.show_data_list);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
@@ -48,16 +54,50 @@ public class ShowData extends Activity{
 
     }
 
-    private void initList(){
-        AttendanceData_Shown heading = new AttendanceData_Shown("姓名", "课程", "情况", "班级");
-        dataList.add(heading);
-        AttendanceData_Shown wpj = new AttendanceData_Shown("王璞劼", "C语言", "yes", "物网141");
-        dataList.add(wpj);
-        AttendanceData_Shown wxy = new AttendanceData_Shown("王兴耀", "C语言", "no", "物网141");
-        dataList.add(wxy);
-        AttendanceData_Shown yqy = new AttendanceData_Shown("杨乔英", "C语言", "出勤", "物网141");
-        dataList.add(yqy);
-        AttendanceData_Shown sg = new AttendanceData_Shown("帅哥", "C语言", "出勤", "物网141");
-        dataList.add(sg);
+    private void initList(AppData.show_data_opts type, String data){
+
+        switch (type){
+            case TODAY:
+                try {
+                    JSONObject jsonObject = new JSONObject(data);
+                    JSONArray tmp = jsonObject.getJSONArray("today");
+                    JSONObject status = tmp.getJSONObject(0);
+
+                    if(status.getString("status").equals("yes")){
+
+                        for(int i = 1; i < tmp.length(); i++){
+                            JSONObject oneDataJson = tmp.getJSONObject(i);
+
+                            AttendanceData_Shown oneData = new AttendanceData_Shown(
+                                    oneDataJson.getString("sname"),
+                                    oneDataJson.getString("cname"),
+                                    oneDataJson.getString("aresult"),
+                                    oneDataJson.getString("sclass")
+                                    );
+
+                            dataList.add(oneData);
+                        }
+                    }else{
+                        Toast.makeText(ShowData.this, "查询结果为无！", Toast.LENGTH_SHORT).show();
+                        new Handler().postDelayed(r, 2000);
+                    }
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                break;
+
+        }
+
     }
+
+    Runnable r = new Runnable() {
+        @Override
+        public void run() {
+            Intent intent = new Intent(ShowData.this, MainMenu.class);
+            startActivity(intent);
+            finish();
+        }
+    };
 }

@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.beardedhen.androidbootstrap.BootstrapButton;
+import com.beardedhen.androidbootstrap.TypefaceProvider;
 
 import java.net.MalformedURLException;
 import java.util.ArrayList;
@@ -36,6 +37,7 @@ public class MainMenu extends ListActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        TypefaceProvider.registerDefaultIconSets();
 
         setContentView(R.layout.main_menu);
 
@@ -47,6 +49,10 @@ public class MainMenu extends ListActivity {
         titlebar_tv.setText("您好," + Login.data.get_username());
 
 /*
+
+
+
+             //测试BTn的内容
             Log.d("233", "today Btn Clicked");
 
             Map<String, String> params = new HashMap<String, String>();
@@ -139,12 +145,10 @@ z
         // Left Meun Init
 
         BootstrapButton today = (BootstrapButton)findViewById(R.id.mainmenu_left_today_data);
-        //today.setClickable(true);
+        today.setClickable(true);
+        Log.d("233", "todayBtn Clickable yes!");
 
-        Log.d("233", "today Btn found!");
-
-
-        today.setOnClickListener(new View.OnClickListener() {
+        today.setOnClickListener(new BootstrapButton.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -157,24 +161,22 @@ z
                     Log.d("233", "Start today_data request");
                     String rst = webRequest.submitPostData(data.todayDataUrl, params, "utf-8");
 
-                    Toast.makeText(MainMenu.this, rst, Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(MainMenu.this, rst, Toast.LENGTH_SHORT).show();
 
                     Log.d("233", rst);
 
-                    //Intent intent  = new Intent(MainMenu.this, ShowData.class);
+                    Intent intent = new Intent(MainMenu.this, ShowData.class);
 
+                    intent.putExtra("type", AppData.show_data_opts.TODAY);
 
+                    intent.putExtra("data", rst);
 
-                    //intent.putExtra("data", rst);
-
-                    //startActivity(intent);
+                    startActivity(intent);
 
                 } catch (MalformedURLException e) {
                     Log.d("233", "Today:" + e.getMessage());
                     Toast.makeText(MainMenu.this, "啊哦，出现问题了", Toast.LENGTH_SHORT).show();
                 }
-
-
 
 
             }

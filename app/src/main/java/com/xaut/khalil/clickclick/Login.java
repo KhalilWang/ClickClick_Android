@@ -46,8 +46,6 @@ public class Login extends Activity{
         btn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View V) {
 
-                Log.d("233", "Btn CLicked");
-
                 if(username.getText().toString().equals("") || password.getText().toString().equals("")){
                     Toast.makeText(Login.this, "用户名或者密码不能为空!", Toast.LENGTH_SHORT).show();
                     return;

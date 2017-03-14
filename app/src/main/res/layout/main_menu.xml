@@ -94,7 +94,8 @@
                 app:roundedCorners="true"
                 android:layout_margin="8dp"
 
-                android:clickable="true" />
+                android:clickable="true"
+                android:enabled="true" />
 
             <com.beardedhen.androidbootstrap.BootstrapButton
 

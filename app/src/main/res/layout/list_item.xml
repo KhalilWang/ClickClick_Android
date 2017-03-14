@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
     android:layout_width="wrap_content"
+    android:layout_margin="8dp"
     android:layout_height="wrap_content">
 
     <TextView
@@ -33,11 +34,11 @@
     <com.beardedhen.androidbootstrap.BootstrapLabel
         android:id="@+id/list_aresult"
         style="@style/wrapping_button"
-        android:width="60dp"
+        android:width="80dp"
         android:text="出勤"
         app:bootstrapBrand="success"
         app:bootstrapHeading="h4"
-        app:roundedCorners="true"
+        app:roundedCorners="false"
         />
 
 </LinearLayout>

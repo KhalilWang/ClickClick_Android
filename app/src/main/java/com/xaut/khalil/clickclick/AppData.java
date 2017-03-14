@@ -13,6 +13,13 @@ public class AppData {
         ONE_FIFTH
     }
 
+    enum show_data_opts
+    {
+        TODAY,
+        CLASS,
+        STUDENT
+    }
+
     final String url = "http://192.168.43.184:5000/";
 
     static String tgtUrl;
