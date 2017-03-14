@@ -27,6 +27,7 @@ public class AppData {
     static String getStuUrl;
     static String postAttendanceUrl;
     static String todayDataUrl;
+    static String courseDataUrl;
 
     static JsonHandler handler;
     static String presentCourseId;
@@ -45,6 +46,7 @@ public class AppData {
         getStuUrl = tgtUrl + "get_cstudents";
         postAttendanceUrl = tgtUrl + "post_attendances";
         todayDataUrl = tgtUrl + "attendances/today";
+        courseDataUrl = tgtUrl + "attendances/course";
 
         username = user;
         call_roll_option = call_roll_opts.ALL;

@@ -7,6 +7,6 @@
     <string name="call_roll_tv1">{fa_play}选择你的点名方式{fa_group}</string>
     <string name="call_roll_real_all">全部点名</string>
     <string name="call_roll_real_ran">随机点名</string>
-    <string name="s_view_btn">ClickMe</string>
+    <string name="s_view_btn">点名</string>
 
 </resources>

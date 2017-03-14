@@ -8,6 +8,15 @@ public class AttendanceData_Shown {
     private String Cname;
     private String Sclas;
     private String Aresult;
+    private String Atime;
+
+    public String getAtime() {
+        return Atime;
+    }
+
+    public void setAtime(String atime) {
+        Atime = atime;
+    }
 
     public String getSname() {
         return Sname;
@@ -41,10 +50,11 @@ public class AttendanceData_Shown {
         Aresult = aresult;
     }
 
-    public AttendanceData_Shown(String sname, String cname, String aresult, String sclas) {
+    public AttendanceData_Shown(String sname, String cname, String aresult, String sclas, String atime) {
         Sname = sname;
         Cname = cname;
         Aresult = aresult;
         Sclas = sclas;
+        Atime = atime;
     }
 }

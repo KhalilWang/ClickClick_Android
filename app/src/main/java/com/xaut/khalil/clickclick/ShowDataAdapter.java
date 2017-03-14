@@ -22,6 +22,7 @@ public  class ShowDataAdapter extends RecyclerView.Adapter<ShowDataAdapter.ViewH
         TextView sname;
         TextView sclas;
         AwesomeTextView aresult;
+        TextView atime;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -29,6 +30,7 @@ public  class ShowDataAdapter extends RecyclerView.Adapter<ShowDataAdapter.ViewH
             cname = (TextView) itemView.findViewById(R.id.list_cname);
             sname = (TextView) itemView.findViewById(R.id.list_sname);
             sclas = (TextView) itemView.findViewById(R.id.list_sclas);
+            atime = (TextView) itemView.findViewById(R.id.list_time);
             aresult = (AwesomeTextView) itemView.findViewById(R.id.list_aresult);
         }
     }
@@ -53,6 +55,7 @@ public  class ShowDataAdapter extends RecyclerView.Adapter<ShowDataAdapter.ViewH
         holder.sname.setText(data.getSname());
         holder.cname.setText(data.getCname());
         holder.sclas.setText(data.getSclas());
+        holder.atime.setText(data.getAtime());
 
 
         switch (data.getAresult()){

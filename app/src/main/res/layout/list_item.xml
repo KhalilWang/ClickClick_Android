@@ -4,7 +4,7 @@
     android:orientation="horizontal"
     android:layout_width="wrap_content"
     android:layout_margin="8dp"
-    android:layout_height="wrap_content">
+    android:layout_height="40dp">
 
     <TextView
         android:id="@+id/list_cname"
@@ -13,31 +13,49 @@
         android:layout_width="140dp"
         android:layout_height="wrap_content" />
 
-
-    <TextView
-        android:id="@+id/list_sname"
-        android:text="王璞劼"
-        android:textSize="20dp"
-        android:layout_weight="2"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content" />
-
-    <TextView
-        android:text="物网141"
-        android:layout_weight="1"
-        android:id="@+id/list_sclas"
-        android:width="80dp"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/list_sname"
+                android:text="王璞劼"
+                android:textSize="20dp"
+                android:layout_weight="2"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:text="物网141"
+                android:layout_weight="1"
+                android:id="@+id/list_sclas"
+                android:width="80dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/list_time"
+            android:text="17-03-14 16:05:23"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+    </LinearLayout>
 
 
     <com.beardedhen.androidbootstrap.BootstrapLabel
         android:id="@+id/list_aresult"
         style="@style/wrapping_button"
-        android:width="80dp"
+        android:width="60dp"
         android:text="出勤"
+        android:textSize="15dp"
         app:bootstrapBrand="success"
-        app:bootstrapHeading="h4"
         app:roundedCorners="false"
         />
 

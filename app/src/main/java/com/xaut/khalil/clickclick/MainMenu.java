@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.beardedhen.androidbootstrap.TypefaceProvider;
+import com.google.gson.Gson;
 
 import java.net.MalformedURLException;
 import java.util.ArrayList;
@@ -33,6 +34,9 @@ public class MainMenu extends ListActivity {
 
     AppData data;
     private List<Map<String, Object>> mData;
+
+    private ArrayList<String> course_name_msg = new ArrayList<>();
+    private ArrayList<String> course_id_msg = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -145,9 +149,6 @@ z
         // Left Meun Init
 
         BootstrapButton today = (BootstrapButton)findViewById(R.id.mainmenu_left_today_data);
-        today.setClickable(true);
-        Log.d("233", "todayBtn Clickable yes!");
-
         today.setOnClickListener(new BootstrapButton.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -179,6 +180,70 @@ z
                 }
 
 
+            }
+        });
+
+        BootstrapButton course = (BootstrapButton)findViewById(R.id.mainmenu_left_course_data);
+        course.setOnClickListener(new BootstrapButton.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Log.d("233", "course Btn Clicked");
+
+                Intent intent = new Intent(MainMenu.this, ShowData.class);
+
+                intent.putExtra("type", AppData.show_data_opts.CLASS);
+
+
+                intent.putExtra("name", new Gson().toJson(course_name_msg));
+                intent.putExtra("id", new Gson().toJson(course_id_msg));
+
+                startActivity(intent);
+
+
+                /*Map<String, String> params = new HashMap<String, String>();
+                params.put("tname", data.get_username());
+
+                try {
+                    Log.d("233", "Start today_data request");
+                    String rst = webRequest.submitPostData(data.todayDataUrl, params, "utf-8");
+
+                    //Toast.makeText(MainMenu.this, rst, Toast.LENGTH_SHORT).show();
+
+                    Log.d("233", rst);
+
+                    Intent intent = new Intent(MainMenu.this, ShowData.class);
+
+                    intent.putExtra("type", AppData.show_data_opts.TODAY);
+
+                    intent.putExtra("data", rst);
+
+                    startActivity(intent);
+
+                } catch (MalformedURLException e) {
+                    Log.d("233", "Today:" + e.getMessage());
+                    Toast.makeText(MainMenu.this, "啊哦，出现问题了", Toast.LENGTH_SHORT).show();
+                }
+            */
+
+            }
+        });
+
+        BootstrapButton student = (BootstrapButton)findViewById(R.id.mainmenu_left_course_student);
+        student.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("233", "student Btn Clicked");
+
+                Intent intent = new Intent(MainMenu.this, ShowData.class);
+
+                intent.putExtra("type", AppData.show_data_opts.STUDENT);
+
+
+                intent.putExtra("name", new Gson().toJson(course_name_msg));
+                intent.putExtra("id", new Gson().toJson(course_id_msg));
+
+                startActivity(intent);
             }
         });
 
@@ -233,6 +298,9 @@ z
                     "\t人数:" + datas.get(i).getCstunum());
 
             map.put("img", R.drawable.note);
+
+            course_id_msg.add(datas.get(i).getCnum());
+            course_name_msg.add(datas.get(i).getCname());
 
             list.add(map);
         }
@@ -367,6 +435,8 @@ z
         }
 
     }
+
+
 
 
 
