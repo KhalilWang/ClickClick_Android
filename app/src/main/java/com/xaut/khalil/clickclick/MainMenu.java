@@ -1,27 +1,22 @@
 package com.xaut.khalil.clickclick;
 
-import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.beardedhen.androidbootstrap.BootstrapButton;
 
 import java.net.MalformedURLException;
 import java.util.ArrayList;
@@ -50,6 +45,32 @@ public class MainMenu extends ListActivity {
         // Init title bar tv
         TextView titlebar_tv = (TextView) findViewById(R.id.mainmeun_title_bar_tv);
         titlebar_tv.setText("您好," + Login.data.get_username());
+
+/*
+            Log.d("233", "today Btn Clicked");
+
+            Map<String, String> params = new HashMap<String, String>();
+            params.put("tname", data.get_username());
+
+            try {
+                Log.d("233", "Start today_data request");
+                String rst = webRequest.submitPostData(data.todayDataUrl, params, "utf-8");
+
+                Toast.makeText(MainMenu.this, rst, Toast.LENGTH_SHORT);
+
+                Log.d("233", rst);
+
+                Intent intent  = new Intent(MainMenu.this, ShowData.class);
+
+                intent.putExtra("data", rst);
+
+                startActivity(intent);
+z
+            } catch (MalformedURLException e) {
+                Log.d("233", "Today:" + e.getMessage());
+                Toast.makeText(MainMenu.this, "啊哦，出现问题了", Toast.LENGTH_SHORT).show();
+            }
+*/
 
 
         /**
@@ -116,6 +137,48 @@ public class MainMenu extends ListActivity {
 
 
         // Left Meun Init
+
+        BootstrapButton today = (BootstrapButton)findViewById(R.id.mainmenu_left_today_data);
+        //today.setClickable(true);
+
+        Log.d("233", "today Btn found!");
+
+
+        today.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Log.d("233", "today Btn Clicked");
+
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("tname", data.get_username());
+
+                try {
+                    Log.d("233", "Start today_data request");
+                    String rst = webRequest.submitPostData(data.todayDataUrl, params, "utf-8");
+
+                    Toast.makeText(MainMenu.this, rst, Toast.LENGTH_SHORT).show();
+
+                    Log.d("233", rst);
+
+                    //Intent intent  = new Intent(MainMenu.this, ShowData.class);
+
+
+
+                    //intent.putExtra("data", rst);
+
+                    //startActivity(intent);
+
+                } catch (MalformedURLException e) {
+                    Log.d("233", "Today:" + e.getMessage());
+                    Toast.makeText(MainMenu.this, "啊哦，出现问题了", Toast.LENGTH_SHORT).show();
+                }
+
+
+
+
+            }
+        });
 
 
 
@@ -184,15 +247,6 @@ public class MainMenu extends ListActivity {
     }
 
 
-    /**
-     * listview中点击按键弹出对话框
-     */
-    public void ListViewBtnClicked(){
-
-
-        Log.d("233", "Btn CLicked!");
-
-    }
 
     public final class ViewHolder{
         public ImageView img;

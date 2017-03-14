@@ -2,13 +2,17 @@ package com.xaut.khalil.clickclick;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import java.io.File;
 
 /**
  * Created by Khalil on 2016/5/22.
@@ -31,6 +35,7 @@ public class CallRoll extends Activity{
 
         Button all_btn = (Button) findViewById(R.id.callroll_all_btn);
         Button ran_btn = (Button) findViewById(R.id.callroll_random_btn);
+        Button cam_btn = (Button) findViewById(R.id.btn_cam);
 
         RadioButton defaultrb = (RadioButton) findViewById(R.id.half_random);
         defaultrb.setChecked(true);
@@ -92,6 +97,19 @@ public class CallRoll extends Activity{
 
                 startActivity(intent);
                 finish();
+            }
+        });
+
+        cam_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setAction("android.media.action.IMAGE_CAPTURE");
+                intent.addCategory("android.intent.category.DEFAULT");
+                File file = new File(Environment.getExternalStorageDirectory() + "/000.jpg");
+                Uri uri = Uri.fromFile(file);
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+                startActivity(intent);
             }
         });
 

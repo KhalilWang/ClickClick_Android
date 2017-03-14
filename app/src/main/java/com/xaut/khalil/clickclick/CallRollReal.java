@@ -1,11 +1,8 @@
 package com.xaut.khalil.clickclick;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.provider.ContactsContract;
-import android.telecom.Call;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -13,22 +10,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.beardedhen.androidbootstrap.AwesomeTextView;
-import com.beardedhen.androidbootstrap.BootstrapDropDown;
 import com.beardedhen.androidbootstrap.BootstrapText;
-import com.beardedhen.androidbootstrap.api.view.BootstrapTextView;
 
 import java.net.MalformedURLException;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 
-import static com.beardedhen.androidbootstrap.font.FontAwesome.FA_HEART;
-import static com.beardedhen.androidbootstrap.font.FontAwesome.FA_TWITTER;
 import static com.beardedhen.androidbootstrap.font.FontAwesome.FA_USERS;
 
 /**
@@ -64,6 +55,7 @@ public class CallRollReal extends Activity{
         //Init Data
         int Length = 5;
 
+
         final DataAdapter adapter;
 
         if(rst.equals("随机点名")){
@@ -90,7 +82,7 @@ public class CallRollReal extends Activity{
                     list.get(i).getScla());
         }
 
-        /*     插入数据
+        /*     测试数据
         adapter.insertData("张三", "140001", "", "物网1");
         adapter.insertData("李四", "140002", "", "物网1");
         adapter.insertData("王五", "140003", "", "物网1");
@@ -197,6 +189,8 @@ public class CallRollReal extends Activity{
                     //处理数据
                     String rstData = data.handler.generateAttendance(rstList);
                     Log.d("233", "GenAttendanceRst:" + rstData);
+
+
                     //发送Json数据
                     Map<String, String> params = new HashMap<String, String>();
                     params.put("data", rstData);

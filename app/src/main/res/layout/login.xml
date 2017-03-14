@@ -16,7 +16,7 @@
 
     <LinearLayout
         android:orientation="horizontal"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp">
 
@@ -24,7 +24,8 @@
 
         <com.beardedhen.androidbootstrap.BootstrapLabel
             style="@style/wrapping_button"
-            android:text="用户名 :"
+            android:layout_width="120dp"
+            android:text="用户名"
             app:bootstrapBrand="info"
             app:bootstrapHeading="h4"
             />
@@ -40,21 +41,23 @@
     </LinearLayout>
 
     <LinearLayout
+        android:layout_margin="5dp"
         android:orientation="horizontal"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content">
 
         <com.beardedhen.androidbootstrap.BootstrapLabel
             style="@style/wrapping_button"
-            android:text=" 密码    :"
+            android:text="密码"
+            android:layout_width="120dp"
             app:bootstrapBrand="info"
             app:bootstrapHeading="h4"
             />
         <EditText
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textVisiblePassword"
+            android:inputType="textPassword"
             android:id="@+id/password" />
 
     </LinearLayout>

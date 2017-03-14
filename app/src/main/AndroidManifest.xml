@@ -44,6 +44,10 @@
             android:parentActivityName=".CallRoll"
             android:theme="@android:style/Theme.Holo.Light" >
         </activity>
+
+        <activity android:name=".ShowData"
+            android:parentActivityName=".MainMenu"
+            ></activity>
     </application>
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />

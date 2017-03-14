@@ -16,8 +16,6 @@ import java.net.MalformedURLException;
 import java.util.HashMap;
 import java.util.Map;
 
-import static java.lang.Thread.sleep;
-
 /**
  * Created by Khalil on 2016/5/19.
  */
@@ -45,50 +43,53 @@ public class Login extends Activity{
 
         Log.d("233", "Login OK");
 
-
-
         btn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View V) {
 
                 Log.d("233", "Btn CLicked");
 
-                    Map<String, String> params = new HashMap<>();
-                    params.put("tname", username.getText().toString());
-                    params.put("password", password.getText().toString());
-
-                    try {
-                        //Get Post Data
-
-                        Log.d("233", "Ready to submit to" + data.loginUrl);
-                        data.loginRst = request.submitPostData(data.loginUrl, params, "utf-8");
-
-                    Log.d("233", "loginRst:" + data.loginRst);
-                    //Toast.makeText(Login.this, data.loginRst, Toast.LENGTH_SHORT).show();
-                    AppData.handler = new JsonHandler(data.loginRst);
-
-                    
-                    //Check Login Message
-                    if(username.getText().toString().equals("") || password.getText().toString().equals("")){
-                        Toast.makeText(Login.this, "用户名或者密码不能为空!", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-
-                    if (AppData.handler.isLoginCorrect()) {
-                        Log.d("233", "Logined!");
-                        data = new AppData(username.getText().toString());
-                        Intent intent = new Intent(Login.this, MainMenu.class);
-                        startActivity(intent);
-
-                    }else{
-                        Log.d("233", "Login Failed!");
-                        Toast.makeText(Login.this, AppData.handler.loginFailedMsg , Toast.LENGTH_SHORT).show();
-                    }
-
-
-
-                } catch (MalformedURLException e) {
-                    Log.d("233", "Login:" + e.getMessage());
+                if(username.getText().toString().equals("") || password.getText().toString().equals("")){
+                    Toast.makeText(Login.this, "用户名或者密码不能为空!", Toast.LENGTH_SHORT).show();
+                    return;
                 }
+
+                Map<String, String> params = new HashMap<>();
+                params.put("tname", username.getText().toString());
+                params.put("password", password.getText().toString());
+
+                try {
+                    //Get Post Data
+
+                    Log.d("233", "Ready to submit to" + data.loginUrl);
+                    data.loginRst = request.submitPostData(data.loginUrl, params, "utf-8");
+
+                Log.d("233", "loginRst:" + data.loginRst);
+                //Toast.makeText(Login.this, data.loginRst, Toast.LENGTH_SHORT).show();
+                AppData.handler = new JsonHandler(data.loginRst);
+
+
+                //Check Login Message
+
+
+                if (AppData.handler.isLoginCorrect()) {
+                    Log.d("233", "Logined!");
+                    data = new AppData(username.getText().toString());
+                    Intent intent = new Intent(Login.this, MainMenu.class);
+                    startActivity(intent);
+
+                }else{
+                    Log.d("233", "Login Failed!");
+                    if(data.handler.loginFailedMsg.equals("")){
+                        data.handler.loginFailedMsg = "NetWork";
+                    }
+                    Toast.makeText(Login.this, "登录失败 [ErrorData: " + AppData.handler.loginFailedMsg + "]" , Toast.LENGTH_SHORT).show();
+                }
+
+
+
+            } catch (MalformedURLException e) {
+                Log.d("233", "Login:" + e.getMessage());
+            }
 
 
 

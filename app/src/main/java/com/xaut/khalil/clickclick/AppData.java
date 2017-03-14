@@ -13,12 +13,13 @@ public class AppData {
         ONE_FIFTH
     }
 
-    final String url = "http://192.168.3.138:5000/";
+    final String url = "http://192.168.43.184:5000/";
 
     static String tgtUrl;
     static String loginUrl;
     static String getStuUrl;
     static String postAttendanceUrl;
+    static String todayDataUrl;
 
     static JsonHandler handler;
     static String presentCourseId;
@@ -29,12 +30,15 @@ public class AppData {
     static String username;
     static call_roll_opts call_roll_option;
 
+
     AppData(String user)
     {
         tgtUrl = url;
         loginUrl = tgtUrl + "login";
         getStuUrl = tgtUrl + "get_cstudents";
         postAttendanceUrl = tgtUrl + "post_attendances";
+        todayDataUrl = tgtUrl + "attendances/today";
+
         username = user;
         call_roll_option = call_roll_opts.ALL;
     }
